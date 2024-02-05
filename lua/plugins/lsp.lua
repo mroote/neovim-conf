@@ -1,3 +1,25 @@
+-- Enable language servers
+local servers = {
+  gopls = {},
+  pyright = {},
+  bashls = {},
+  ansiblels = {},
+  jsonls = {},
+  terraformls = {},
+  elixirls = {},
+  yamlls = {},
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
+
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+      diagnostics = { disable = { 'missing-fields' } },
+    },
+  }
+}
+
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
@@ -19,17 +41,11 @@ return {
     -- [[ Configure LSP ]]
     --  This function gets run when an LSP connects to a particular buffer.
     local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
+      -- easily define mappings specific for LSP related items. It sets the mode, buffer and description for us each time.
       local nmap = function(keys, func, desc)
         if desc then
           desc = 'LSP: ' .. desc
         end
-
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
       end
 
@@ -85,27 +101,6 @@ return {
     -- before setting up the servers.
     require('mason').setup()
     require('mason-lspconfig').setup()
-
-    -- Enable language servers
-    local servers = {
-      gopls = {},
-      pyright = {},
-      bashls = {},
-      ansiblels = {},
-      jsonls = {},
-      terraformls = {},
-      elixirls = {},
-      html = { filetypes = { 'html', 'twig', 'hbs'} },
-
-      lua_ls = {
-	Lua = {
-	  workspace = { checkThirdParty = false },
-	  telemetry = { enable = false },
-	  -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-	  diagnostics = { disable = { 'missing-fields' } },
-	},
-      }
-    }
 
     -- Setup neovim lua configuration
     require('neodev').setup()
