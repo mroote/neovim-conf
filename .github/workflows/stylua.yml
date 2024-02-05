@@ -5,7 +5,7 @@ on: pull_request
 jobs:
   stylua-check:
     name: Stylua Check
-    runs-on: builder
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
