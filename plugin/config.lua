@@ -2,6 +2,7 @@
 
 -- Set highlight on search
 vim.o.hlsearch = true
+vim.o.incsearch = true
 
 -- disable line wrapping
 vim.o.wrap = false
