@@ -2,7 +2,7 @@ return {
   -- Add toggleterm
   "akinsho/toggleterm.nvim",
   version = "*",
-  config = {
+  opts = {
     persist_size = false
   }
 }
