@@ -6,6 +6,7 @@ return {
     persist_size = false
   },
   config = function()
+    require('toggleterm').setup()
     local Terminal  = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new({
       cmd = "lazygit",
