@@ -17,9 +17,13 @@ return {
     options = {
       icons_enabled = true,
       theme = 'gruvbox',
-      component_separators = { left = '', right = ''},
-      section_separators = { left = '', right = ''},
-      disabled_filetypes = { 'packer', 'neo-tree' },
+      component_separators = { left = '', right = ''},
+      section_separators = { left = '', right = '' },
+      disabled_filetypes = { 
+        'packer', 
+        'neo-tree',
+        'winbar'
+      },
     },
     sections = {
       lualine_b = {
