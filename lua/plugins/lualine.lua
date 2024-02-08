@@ -26,12 +26,6 @@ return {
         { 'branch' },
         { "diff", source = diff_source },
       },
-      lualine_z = {
-        {
-          'datetime',
-          style = "%H:%M"
-        },
-      }
     },
   },
   dependencies = { 'nvim-tree/nvim-web-devicons' }
