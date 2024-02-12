@@ -53,7 +53,6 @@ return {
       nmap('<leader>ca', function()
         vim.lsp.buf.code_action { context = { only = { 'quickfix', 'refactor', 'source' } } }
       end, '[C]ode [A]ction')
-
       nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
       nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
       nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -64,6 +63,9 @@ return {
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
       nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+      -- Show error diagnostics
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
 
       -- Lesser used LSP functionality
       nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
