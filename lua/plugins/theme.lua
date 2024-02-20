@@ -1,8 +1,9 @@
 return {
-  'ellisonleao/gruvbox.nvim',
+  vim.g.colorscheme.url,
   priority = 1000,
   lazy = false,
+  dependencies = { 'rktjmp/lush.nvim' },
   config = function()
-    require("gruvbox").load()
+    require(vim.g.colorscheme.name).load()
   end
 }

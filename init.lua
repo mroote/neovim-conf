@@ -10,6 +10,11 @@ r00t nvim
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.colorscheme = {
+  url = 'ellisonleao/gruvbox.nvim',
+  name = 'gruvbox',
+}
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -43,7 +48,7 @@ require('lazy').setup({
   },
   install = {
     missing = true,
-    colorscheme = { "gruvbox" },
+    colorscheme = { vim.g.colorscheme.name },
   },
 })
 
