@@ -30,6 +30,14 @@ return {
       lazygit:toggle()
     end
 
-    vim.api.nvim_set_keymap("n", "<leader>gt", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_set_keymap("n", 
+      "<leader>gt", 
+      "<cmd>lua _lazygit_toggle()<CR>", 
+      {
+        noremap = true, 
+        silent = true,
+        desc = "Open lazygit window"
+      })
+    vim.keymap.set('n', '<leader>t', "<cmd>ToggleTerm<cr>", { desc = 'Open terminal' })
   end
 }
