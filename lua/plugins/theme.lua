@@ -3,7 +3,7 @@ return {
   priority = 1000,
   lazy = false,
   dependencies = { 'rktjmp/lush.nvim' },
-  config = function()
+  init = function()
     if vim.g.theme.config then
       for k, v in pairs(vim.g.theme.config) do
         vim.g[k] = v
