@@ -43,7 +43,7 @@ vim.g.colorschemes = {
   }
 }
 
-vim.g.theme = vim.g.colorschemes.ayu
+vim.g.theme = vim.g.colorschemes.gruvbox_material
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -78,7 +78,7 @@ require('lazy').setup({
   },
   install = {
     missing = true,
-    colorscheme = { vim.g.theme.name },
+    colorscheme = { vim.g.theme.name, 'habamax' },
   },
 })
 
