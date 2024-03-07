@@ -40,6 +40,14 @@ vim.g.colorschemes = {
     config = {
       espacio_Midnight = 1
     }
+  },
+  falcon = {
+    url = 'fenetikm/falcon',
+    name = 'falcon',
+    config = {
+      falcon_background = 1,
+      falcon_inactive = 1
+    }
   }
 }
 
