@@ -10,10 +10,25 @@ r00t nvim
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.colorscheme = {
-  url = 'ellisonleao/gruvbox.nvim',
-  name = 'gruvbox',
+vim.g.colorschemes = {
+  gruvbox = {
+    url = 'ellisonleao/gruvbox.nvim',
+    name = 'gruvbox',
+  },
+  gruvbox_material = {
+    url = 'sainnhe/gruvbox-material',
+    name = 'gruvbox-material',
+  },
+  sonokai = {
+    url = 'sainnhe/sonokai',
+    name = 'sonokai',
+    config = {
+      sonokai_style = 'atlantis'
+    }
+  }
 }
+
+vim.g.theme = vim.g.colorschemes.sonokai
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -48,8 +63,7 @@ require('lazy').setup({
   },
   install = {
     missing = true,
-    colorscheme = { vim.g.colorscheme.name },
+    colorscheme = { vim.g.theme.name },
   },
 })
 
--- vim: ts=2 sts=2 sw=2 et

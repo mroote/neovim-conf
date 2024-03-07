@@ -17,7 +17,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = 'gruvbox',
+      theme = vim.g.theme.name,
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = '' },
       disabled_filetypes = {
