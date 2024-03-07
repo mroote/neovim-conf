@@ -25,10 +25,25 @@ vim.g.colorschemes = {
     config = {
       sonokai_style = 'atlantis'
     }
+  },
+  ayu = {
+    url = 'Shatur/neovim-ayu',
+    name = 'ayu-dark'
+  },
+  doom_one = {
+    url = 'NTBBloodbath/doom-one.nvim',
+    name = 'doom-one'
+  },
+  despacio = {
+    url = 'AlessandroYorba/Despacio',
+    name = 'despacio',
+    config = {
+      espacio_Midnight = 1
+    }
   }
 }
 
-vim.g.theme = vim.g.colorschemes.sonokai
+vim.g.theme = vim.g.colorschemes.ayu
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
