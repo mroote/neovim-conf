@@ -1,6 +1,23 @@
 -- Enable language servers
 local servers = {
-  gopls = {},
+  gopls = {
+    cmd = {"gopls", "serve"},
+    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    settings = {
+      gopls = {
+        completeUnimported = true,
+        usePlaceholders = true,
+        analyses = {
+          unusedparams = true,
+        },
+      },
+    },
+    root_dir = function(fname)
+       -- see: https://github.com/neovim/nvim-lspconfig/issues/804
+      local util = require('lspconfig.util')
+      return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
+    end,
+  },
   pyright = {},
   bashls = {},
   ansiblels = {},
@@ -8,7 +25,9 @@ local servers = {
   terraformls = {},
   elixirls = {},
   yamlls = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = {
+    filetypes = { 'html', 'twig', 'hbs'}
+  },
 
   lua_ls = {
     Lua = {
@@ -23,23 +42,38 @@ local servers = {
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
+  event = "VeryLazy",
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
-    { 'williamboman/mason.nvim', config = true },
-    'williamboman/mason-lspconfig.nvim',
+    {
+      'williamboman/mason.nvim',
+      event = "VeryLazy",
+      config = true
+    },
+
+    {
+      'williamboman/mason-lspconfig.nvim',
+      event = "VeryLazy",
+    },
 
     -- Useful status updates for LSP
     {
       'j-hui/fidget.nvim',
-      opts = {},
       event = "VeryLazy",
     },
 
     -- Additional lua configuration, makes nvim stuff amazing!
-    'folke/neodev.nvim',
+    {
+      'folke/neodev.nvim',
+      opts = {},
+      event = "VeryLazy",
+    },
 
     -- Add ansible-vim for filetype detection
-    'pearofducks/ansible-vim',
+    {
+      'pearofducks/ansible-vim',
+      event = "VeryLazy",
+    }
   },
   config = function()
     -- [[ Configure LSP ]]
@@ -80,11 +114,9 @@ return {
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
-    end
 
-    vim.diagnostic.config({
-      virtual_text = false,
-    })
+      vim.diagnostic.config({virtual_text = false})
+    end
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
@@ -110,8 +142,10 @@ return {
 	require('lspconfig')[server_name].setup {
 	  capabilities = capabilities,
 	  on_attach = on_attach,
-	  settings = servers[server_name],
+          cmd = (servers[server_name] or {}).cmd,
+	  settings = (servers[server_name] or {}).settings,
 	  filetypes = (servers[server_name] or {}).filetypes,
+          root_dir = (servers[server_name] or {}).root_dir,
 	}
       end,
     }

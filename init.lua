@@ -73,13 +73,16 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   spec = {
     -- Git related plugins
-    'tpope/vim-fugitive',
+    {
+      'tpope/vim-fugitive',
+      event = "VeryLazy"
+    },
 
     -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
-
-    -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim', opts = {} },
+    {
+      'tpope/vim-sleuth',
+      event = "VeryLazy"
+    },
 
     -- Import all plugins in lua/plugins
     { import = 'plugins' },
@@ -89,4 +92,3 @@ require('lazy').setup({
     colorscheme = { vim.g.theme.name, 'habamax' },
   },
 })
-

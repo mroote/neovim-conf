@@ -35,7 +35,6 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.showmatch = true
 
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
 -- [[ Highlight on yank ]]

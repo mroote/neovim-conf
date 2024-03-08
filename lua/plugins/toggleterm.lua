@@ -2,6 +2,7 @@ return {
   -- Add toggleterm
   "akinsho/toggleterm.nvim",
   version = "*",
+  event = "VeryLazy",
   opts = {
     persist_size = false
   },
@@ -30,11 +31,11 @@ return {
       lazygit:toggle()
     end
 
-    vim.api.nvim_set_keymap("n", 
-      "<leader>gt", 
-      "<cmd>lua _lazygit_toggle()<CR>", 
+    vim.api.nvim_set_keymap("n",
+      "<leader>gt",
+      "<cmd>lua _lazygit_toggle()<CR>",
       {
-        noremap = true, 
+        noremap = true,
         silent = true,
         desc = "Open lazygit window"
       })

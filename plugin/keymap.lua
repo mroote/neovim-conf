@@ -15,3 +15,4 @@ vim.keymap.set('n', '<leader>e', ":Neotree toggle<cr>", { desc = 'Open neotree' 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)

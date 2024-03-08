@@ -1,7 +1,7 @@
 return {
   -- Add nice notification popups
   "rcarriga/nvim-notify",
-  event = "VeryLazy",
+  event = {"VeryLazy"},
   opts = {
     timeout = 3000,
     max_height = function()
