@@ -8,11 +8,14 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Open neotree
-vim.keymap.set('n', '<leader>e', ":Neotree toggle<cr>", { desc = 'Open neotree' })
-
 -- easier indenting of code blocks
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+-- Open neotree
+vim.keymap.set('n', '<leader>e', ":Neotree toggle<cr>", { desc = 'Open neotree' })
+vim.keymap.set("n", "<leader>gs", ":Neotree float git_status<cr>", { desc = 'Open git status window' })
+
+-- Open undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+

@@ -1,33 +1,34 @@
+local ts_configs = {
+  'c',
+  'cpp',
+  'go',
+  'lua',
+  'python',
+  'rust',
+  'tsx',
+  'javascript',
+  'typescript',
+  'vimdoc',
+  'vim',
+  'bash',
+  'terraform',
+  'yaml',
+  'json',
+}
+
 return {
   -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
-  event = "VeryLazy",
   build = ':TSUpdate',
   config = function()
     -- [[ Configure Treesitter ]]
     vim.defer_fn(function()
       require('nvim-treesitter.configs').setup {
         -- Add languages to be installed here that you want installed for treesitter
-        ensure_installed = {
-          'c',
-          'cpp',
-          'go',
-          'lua',
-          'python',
-          'rust',
-          'tsx',
-          'javascript',
-          'typescript',
-          'vimdoc',
-          'vim',
-          'bash',
-          'terraform',
-          'yaml',
-          'json'
-        },
+        ensure_installed = ts_configs,
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
         auto_install = false,

@@ -39,6 +39,13 @@ return {
         silent = true,
         desc = "Open lazygit window"
       })
-    vim.keymap.set('n', '<leader>t', "<cmd>ToggleTerm<cr>", { desc = 'Open terminal' })
+    vim.keymap.set('n',
+      '<leader>t',
+      "<cmd>ToggleTerm<cr>",
+      {
+        noremap = true,
+        silent = true,
+        desc = 'Open terminal'
+      })
   end
 }
