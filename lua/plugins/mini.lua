@@ -2,7 +2,6 @@ return {
   -- Add mini nvim
   'echasnovski/mini.nvim',
   version = '*',
-  event = "VeryLazy",
   config = function ()
     require("mini.surround").setup {}
     require("mini.starter").setup {

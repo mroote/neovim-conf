@@ -18,7 +18,16 @@ local servers = {
       return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
     end,
   },
-  pyright = {},
+  pyright = {
+    enabled = false,
+  },
+  basedpyright = {
+    settings = {
+      basedpyright = {
+        typeCheckingMode = "off"
+      }
+    }
+  },
   bashls = {},
   ansiblels = {},
   jsonls = {},
@@ -28,7 +37,6 @@ local servers = {
   html = {
     filetypes = { 'html', 'twig', 'hbs'}
   },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
