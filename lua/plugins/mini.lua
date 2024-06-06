@@ -11,5 +11,17 @@ return {
     require('mini.cursorword').setup({})
     require('mini.bufremove').setup({})
     require('mini.comment').setup({})
+    local indentscope = require('mini.indentscope')
+    indentscope.setup({
+      draw = {
+        delay = 50,
+        animation = indentscope.gen_animation.cubic({
+          easing = 'in',
+          duration = 10,
+          unit = 'step',
+        }),
+      },
+      symbol = "⎸"
+    })
   end
 }
