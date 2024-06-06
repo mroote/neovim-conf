@@ -18,9 +18,6 @@ local servers = {
       return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
     end,
   },
-  pyright = {
-    enabled = false,
-  },
   basedpyright = {
     settings = {
       basedpyright = {
@@ -47,6 +44,10 @@ local servers = {
   }
 }
 
+local linters = {
+  actionlint = {}
+}
+
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
@@ -58,25 +59,30 @@ return {
       event = "VeryLazy",
       config = true
     },
-
     {
       'williamboman/mason-lspconfig.nvim',
       event = "VeryLazy",
     },
-
+    {
+      "rshkarin/mason-nvim-lint",
+      event = "VeryLazy",
+      dependencies = {
+        {
+          "mfussenegger/nvim-lint",
+        },
+      }
+    },
     -- Useful status updates for LSP
     {
       'j-hui/fidget.nvim',
       event = "VeryLazy",
     },
-
     -- Additional lua configuration, makes nvim stuff amazing!
     {
-      'folke/neodev.nvim',
+      'folke/lazydev.nvim',
       opts = {},
       event = "VeryLazy",
     },
-
     -- Add ansible-vim for filetype detection
     {
       'pearofducks/ansible-vim',
@@ -131,8 +137,10 @@ return {
     require('mason').setup()
     require('mason-lspconfig').setup()
 
-    -- Setup neovim lua configuration
-    require('neodev').setup()
+    -- setup linting config
+    require("mason-nvim-lint").setup({
+      ensure_installed = vim.tbl_keys(linters)
+    })
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
