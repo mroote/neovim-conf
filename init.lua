@@ -69,6 +69,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local disable_builtin_plugins = {
+  'netrwPlugin',
+  'gzip',
+  'tutor',
+  'tohtml'
+}
+
 -- [[ Configure plugins ]]
 require('lazy').setup({
   spec = {

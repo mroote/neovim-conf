@@ -15,13 +15,13 @@ return {
     indentscope.setup({
       draw = {
         delay = 50,
-        animation = indentscope.gen_animation.cubic({
+        animation = indentscope.gen_animation.quadratic({
           easing = 'in',
-          duration = 10,
+          duration = 5,
           unit = 'step',
         }),
       },
-      symbol = "⎸"
+      symbol = "│"
     })
   end
 }
