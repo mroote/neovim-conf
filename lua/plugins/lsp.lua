@@ -27,6 +27,8 @@ local servers = {
   },
   bashls = {},
   ansiblels = {},
+  dockerls = {},
+  docker_compose_language_service = {},
   jsonls = {},
   terraformls = {},
   elixirls = {},
@@ -134,7 +136,9 @@ return {
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
-    require('mason').setup()
+    require('mason').setup({
+      log_level = vim.log.levels.DEBUG
+    })
     require('mason-lspconfig').setup()
 
     -- setup linting config
