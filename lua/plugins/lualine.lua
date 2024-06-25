@@ -23,6 +23,7 @@ return {
       disabled_filetypes = {
         'packer',
         'neo-tree',
+        'toggleterm',
         'winbar'
       },
     },
