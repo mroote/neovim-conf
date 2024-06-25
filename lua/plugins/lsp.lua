@@ -50,6 +50,10 @@ local linters = {
   actionlint = {}
 }
 
+local debuggers = {
+  python = {}
+}
+
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
@@ -71,6 +75,15 @@ return {
       dependencies = {
         {
           "mfussenegger/nvim-lint",
+        },
+      }
+    },
+    {
+      "jay-babu/mason-nvim-dap.nvim",
+      event = "VeryLazy",
+      dependencies = {
+        {
+          "mfussenegger/nvim-dap",
         },
       }
     },
@@ -144,6 +157,11 @@ return {
     -- setup linting config
     require("mason-nvim-lint").setup({
       ensure_installed = vim.tbl_keys(linters)
+    })
+
+    -- setup debugging config
+    require("mason-nvim-dap").setup({
+      ensure_installed = vim.tbl_keys(debuggers)
     })
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
