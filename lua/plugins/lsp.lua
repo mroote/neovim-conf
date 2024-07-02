@@ -47,7 +47,9 @@ local servers = {
 }
 
 local linters = {
-  actionlint = {}
+  actionlint = {},
+  gitleaks = {},
+  gitlint = {},
 }
 
 local debuggers = {
@@ -74,7 +76,10 @@ return {
       event = "VeryLazy",
       dependencies = {
         {
-          "mfussenegger/nvim-lint",
+          {
+            "mfussenegger/nvim-lint",
+            event = "VeryLazy",
+          },
         },
       }
     },
@@ -156,7 +161,8 @@ return {
 
     -- setup linting config
     require("mason-nvim-lint").setup({
-      ensure_installed = vim.tbl_keys(linters)
+      ensure_installed = vim.tbl_keys(linters),
+      automatic_installation = false,
     })
 
     -- setup debugging config
