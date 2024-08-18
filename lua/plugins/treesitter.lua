@@ -14,6 +14,7 @@ local ts_configs = {
   'terraform',
   'yaml',
   'json',
+  'html',
 }
 
 return {
