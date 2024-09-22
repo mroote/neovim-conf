@@ -1,8 +1,10 @@
 -- Enable language servers
 local servers = {
+  arduino_language_server = {},
+  clangd = {},
   gopls = {
-    cmd = {"gopls", "serve"},
-    filetypes = { "go", "gomod", "gowork", "gotmpl" },
+    cmd = { 'gopls', 'serve' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
     settings = {
       gopls = {
         completeUnimported = true,
@@ -13,17 +15,17 @@ local servers = {
       },
     },
     root_dir = function(fname)
-       -- see: https://github.com/neovim/nvim-lspconfig/issues/804
-      local util = require('lspconfig.util')
+      -- see: https://github.com/neovim/nvim-lspconfig/issues/804
+      local util = require 'lspconfig.util'
       return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
     end,
   },
   basedpyright = {
     settings = {
       basedpyright = {
-        typeCheckingMode = "off"
-      }
-    }
+        typeCheckingMode = 'off',
+      },
+    },
   },
   bashls = {},
   ansiblels = {},
@@ -34,7 +36,7 @@ local servers = {
   elixirls = {},
   yamlls = {},
   html = {
-    filetypes = { 'html', 'twig', 'hbs'}
+    filetypes = { 'html', 'twig', 'hbs' },
   },
   lua_ls = {
     Lua = {
@@ -43,71 +45,72 @@ local servers = {
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
       diagnostics = { disable = { 'missing-fields' } },
     },
-  }
+  },
 }
 
 local linters = {
   actionlint = {},
   gitleaks = {},
   gitlint = {},
+  luacheck = {},
 }
 
 local debuggers = {
-  python = {}
+  python = {},
 }
 
 return {
   -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
-  event = "VeryLazy",
+  event = 'VeryLazy',
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     {
       'williamboman/mason.nvim',
-      event = "VeryLazy",
-      config = true
+      event = 'VeryLazy',
+      config = true,
     },
     {
       'williamboman/mason-lspconfig.nvim',
-      event = "VeryLazy",
+      event = 'VeryLazy',
     },
     {
-      "rshkarin/mason-nvim-lint",
-      event = "VeryLazy",
+      'rshkarin/mason-nvim-lint',
+      event = 'VeryLazy',
       dependencies = {
         {
           {
-            "mfussenegger/nvim-lint",
-            event = "VeryLazy",
+            'mfussenegger/nvim-lint',
+            event = 'VeryLazy',
           },
         },
-      }
+      },
     },
     {
-      "jay-babu/mason-nvim-dap.nvim",
-      event = "VeryLazy",
+      'jay-babu/mason-nvim-dap.nvim',
+      event = 'VeryLazy',
       dependencies = {
         {
-          "mfussenegger/nvim-dap",
+          'mfussenegger/nvim-dap',
         },
-      }
+      },
     },
     -- Useful status updates for LSP
     {
       'j-hui/fidget.nvim',
-      event = "VeryLazy",
+      event = 'VeryLazy',
     },
     -- Additional lua configuration, makes nvim stuff amazing!
     {
       'folke/lazydev.nvim',
       opts = {},
-      event = "VeryLazy",
+      event = 'VeryLazy',
     },
     -- Add ansible-vim for filetype detection
     {
       'pearofducks/ansible-vim',
-      event = "VeryLazy",
-    }
+      event = 'VeryLazy',
+    },
   },
   config = function()
     -- [[ Configure LSP ]]
@@ -149,26 +152,26 @@ return {
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
 
-      vim.diagnostic.config({virtual_text = false})
+      vim.diagnostic.config { virtual_text = false }
     end
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
-    require('mason').setup({
-      log_level = vim.log.levels.DEBUG
-    })
+    require('mason').setup {
+      log_level = vim.log.levels.DEBUG,
+    }
     require('mason-lspconfig').setup()
 
     -- setup linting config
-    require("mason-nvim-lint").setup({
+    require('mason-nvim-lint').setup {
       ensure_installed = vim.tbl_keys(linters),
       automatic_installation = false,
-    })
+    }
 
     -- setup debugging config
-    require("mason-nvim-dap").setup({
-      ensure_installed = vim.tbl_keys(debuggers)
-    })
+    require('mason-nvim-dap').setup {
+      ensure_installed = vim.tbl_keys(debuggers),
+    }
 
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -183,15 +186,15 @@ return {
 
     mason_lspconfig.setup_handlers {
       function(server_name)
-	require('lspconfig')[server_name].setup {
-	  capabilities = capabilities,
-	  on_attach = on_attach,
+        require('lspconfig')[server_name].setup {
+          capabilities = capabilities,
+          on_attach = on_attach,
           cmd = (servers[server_name] or {}).cmd,
-	  settings = (servers[server_name] or {}).settings,
-	  filetypes = (servers[server_name] or {}).filetypes,
+          settings = (servers[server_name] or {}).settings,
+          filetypes = (servers[server_name] or {}).filetypes,
           root_dir = (servers[server_name] or {}).root_dir,
-	}
+        }
       end,
     }
-  end
+  end,
 }

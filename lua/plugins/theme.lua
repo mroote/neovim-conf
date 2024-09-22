@@ -11,5 +11,5 @@ return {
     end
 
     vim.cmd.colorscheme(vim.g.theme.name)
-  end
+  end,
 }

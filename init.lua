@@ -23,32 +23,32 @@ vim.g.colorschemes = {
     url = 'sainnhe/sonokai',
     name = 'sonokai',
     config = {
-      sonokai_style = 'atlantis'
-    }
+      sonokai_style = 'atlantis',
+    },
   },
   ayu = {
     url = 'Shatur/neovim-ayu',
-    name = 'ayu-dark'
+    name = 'ayu-dark',
   },
   doom_one = {
     url = 'NTBBloodbath/doom-one.nvim',
-    name = 'doom-one'
+    name = 'doom-one',
   },
   despacio = {
     url = 'AlessandroYorba/Despacio',
     name = 'despacio',
     config = {
-      espacio_Midnight = 1
-    }
+      espacio_Midnight = 1,
+    },
   },
   falcon = {
     url = 'fenetikm/falcon',
     name = 'falcon',
     config = {
       falcon_background = 1,
-      falcon_inactive = 1
-    }
-  }
+      falcon_inactive = 1,
+    },
+  },
 }
 
 vim.g.theme = vim.g.colorschemes.gruvbox_material
@@ -73,22 +73,22 @@ local disable_builtin_plugins = {
   'netrwPlugin',
   'gzip',
   'tutor',
-  'tohtml'
+  'tohtml',
 }
 
 -- [[ Configure plugins ]]
-require('lazy').setup({
+require('lazy').setup {
   spec = {
     -- Git related plugins
     {
       'tpope/vim-fugitive',
-      event = "VeryLazy"
+      event = 'VeryLazy',
     },
 
     -- Detect tabstop and shiftwidth automatically
     {
       'tpope/vim-sleuth',
-      event = "VeryLazy"
+      event = 'VeryLazy',
     },
 
     -- Import all plugins in lua/plugins
@@ -98,4 +98,4 @@ require('lazy').setup({
     missing = true,
     colorscheme = { vim.g.theme.name, 'habamax' },
   },
-})
+}

@@ -2,7 +2,7 @@ return {
   -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
-  event = "VeryLazy",
+  event = 'VeryLazy',
   dependencies = {
     'nvim-lua/plenary.nvim',
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -96,6 +96,5 @@ return {
         previewer = false,
       })
     end, { desc = '[/] Fuzzily search in current buffer' })
-  end
+  end,
 }
-

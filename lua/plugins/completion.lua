@@ -1,7 +1,7 @@
 return {
   -- Autocompletion
   'hrsh7th/nvim-cmp',
-  event = "VeryLazy",
+  event = 'VeryLazy',
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     {
@@ -9,7 +9,7 @@ return {
       dependencies = {
         -- Adds a number of user-friendly snippets
         'rafamadriz/friendly-snippets',
-      }
+      },
     },
     'saadparwaiz1/cmp_luasnip',
 
@@ -70,5 +70,5 @@ return {
         { name = 'path' },
       },
     }
-  end
+  end,
 }

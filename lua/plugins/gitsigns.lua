@@ -1,16 +1,16 @@
 return {
   -- Adds git related signs to the gutter, as well as utilities for managing changes
   'lewis6991/gitsigns.nvim',
-  event = "VeryLazy",
+  event = 'VeryLazy',
   opts = {
     -- See `:help gitsigns.txt`
     signs = {
-      add          = { text = '+' },
-      change       = { text = '~' },
-      delete       = { text = '-' },
-      topdelete    = { text = '‾' },
+      add = { text = '+' },
+      change = { text = '~' },
+      delete = { text = '-' },
+      topdelete = { text = '‾' },
       changedelete = { text = '~' },
-      untracked    = { text = '┆' },
+      untracked = { text = '┆' },
     },
     current_line_blame = true,
     current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d>',

@@ -15,6 +15,7 @@ local ts_configs = {
   'yaml',
   'json',
   'html',
+  'elixir',
 }
 
 return {
@@ -96,5 +97,5 @@ return {
         },
       }
     end, 0)
-  end
+  end,
 }

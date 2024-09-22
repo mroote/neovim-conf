@@ -1,7 +1,7 @@
 return {
   -- Useful plugin to show you pending keybinds.
   'folke/which-key.nvim',
-  event = "VeryLazy",
+  event = 'VeryLazy',
   opts = {},
   config = function()
     -- document existing key chains
@@ -21,6 +21,5 @@ return {
       ['<leader>'] = { name = 'VISUAL <leader>' },
       ['<leader>h'] = { 'Git [H]unk' },
     }, { mode = 'v' })
-  end
+  end,
 }
-
