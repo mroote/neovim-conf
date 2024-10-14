@@ -4,54 +4,15 @@
 r00t nvim
 --]]
 
+local themes = require('themes')
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.colorschemes = {
-  gruvbox = {
-    url = 'ellisonleao/gruvbox.nvim',
-    name = 'gruvbox',
-  },
-  gruvbox_material = {
-    url = 'sainnhe/gruvbox-material',
-    name = 'gruvbox-material',
-  },
-  sonokai = {
-    url = 'sainnhe/sonokai',
-    name = 'sonokai',
-    config = {
-      sonokai_style = 'atlantis',
-    },
-  },
-  ayu = {
-    url = 'Shatur/neovim-ayu',
-    name = 'ayu-dark',
-  },
-  doom_one = {
-    url = 'NTBBloodbath/doom-one.nvim',
-    name = 'doom-one',
-  },
-  despacio = {
-    url = 'AlessandroYorba/Despacio',
-    name = 'despacio',
-    config = {
-      espacio_Midnight = 1,
-    },
-  },
-  falcon = {
-    url = 'fenetikm/falcon',
-    name = 'falcon',
-    config = {
-      falcon_background = 1,
-      falcon_inactive = 1,
-    },
-  },
-}
-
-vim.g.theme = vim.g.colorschemes.gruvbox_material
+vim.g.theme = themes.current_theme
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -93,9 +54,11 @@ require('lazy').setup {
 
     -- Import all plugins in lua/plugins
     { import = 'plugins' },
+
+    unpack(themes.get_theme_specs()),
   },
   install = {
     missing = true,
-    colorscheme = { vim.g.theme.name, 'habamax' },
+    colorscheme = { themes.current_theme.name, 'habamax' },
   },
 }
