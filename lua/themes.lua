@@ -39,6 +39,15 @@ M.themes = {
       falcon_inactive = 1,
     },
   },
+  edge = {
+    url = 'sainnhe/edge',
+    name = 'edge',
+    config = {
+      edge_enable_italic = true,
+      edge_style = 'neon',
+      edge_better_performance = 1,
+    },
+  },
 }
 
 M.set_theme = function(theme_name)
