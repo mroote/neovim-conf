@@ -85,6 +85,4 @@ end, { nargs = 1, complete = function()
   return vim.tbl_keys(M.themes)
 end })
 
-M.current_theme = M.themes.gruvbox_material
-
 return M

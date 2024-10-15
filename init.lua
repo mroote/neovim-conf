@@ -12,7 +12,7 @@ local themes = require('themes')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.theme = themes.current_theme
+vim.g.theme = themes.themes.sonokai
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -40,6 +40,7 @@ local disable_builtin_plugins = {
 -- [[ Configure plugins ]]
 require('lazy').setup {
   spec = {
+    unpack(themes.get_theme_specs()),
     -- Git related plugins
     {
       'tpope/vim-fugitive',
@@ -54,11 +55,9 @@ require('lazy').setup {
 
     -- Import all plugins in lua/plugins
     { import = 'plugins' },
-
-    unpack(themes.get_theme_specs()),
   },
   install = {
     missing = true,
-    colorscheme = { themes.current_theme.name, 'habamax' },
+    colorscheme = { vim.g.theme.name, 'habamax' },
   },
 }
