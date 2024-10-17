@@ -12,7 +12,7 @@ local themes = require('themes')
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.theme = themes.themes.sonokai
+vim.g.theme = themes.themes.gruvbox_material
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -46,18 +46,44 @@ require('lazy').setup {
       'tpope/vim-fugitive',
       event = 'VeryLazy',
     },
-
     -- Detect tabstop and shiftwidth automatically
     {
       'tpope/vim-sleuth',
       event = 'VeryLazy',
     },
-
     -- Import all plugins in lua/plugins
     { import = 'plugins' },
   },
   install = {
     missing = true,
     colorscheme = { vim.g.theme.name, 'habamax' },
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "2html_plugin",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
+      },
+    },
+  },
+  change_detection = {
+    enabled = true,
+    notify = false,
   },
 }
