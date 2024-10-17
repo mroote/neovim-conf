@@ -33,7 +33,11 @@ local servers = {
   docker_compose_language_service = {},
   jsonls = {},
   terraformls = {},
-  elixirls = {},
+  elixirls = {
+    settings = {
+      dialyzerEnabled = false,
+    }
+  },
   yamlls = {},
   html = {
     filetypes = { 'html', 'twig', 'hbs' },

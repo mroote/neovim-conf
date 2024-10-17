@@ -48,13 +48,21 @@ M.themes = {
       edge_better_performance = 1,
     },
   },
+  catppuccin = {
+    url = "catppuccin/nvim",
+    name = "catppuccin",
+  },
+  kanagawa = {
+    url = 'rebelot/kanagawa.nvim',
+    name = 'kanagawa',
+  },
 }
 
 M.set_theme = function(theme_name)
   local theme = M.themes[theme_name]
   if theme then
     M.current_theme = theme
-    vim.cmd('colorscheme ' .. theme.name)
+    vim.cmd.colorscheme(theme.name)
   else
     print("Theme not found: " .. theme_name)
   end
