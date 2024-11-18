@@ -4,7 +4,10 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    provider = "claude",
+    provider = "copilot",
+    copilot = {
+      model = "claude-3.5-sonnet"
+    },
     vendors = {
       ---@type AvanteProvider
       groq = {
@@ -47,7 +50,19 @@ return {
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    "zbirenbaum/copilot.lua", -- for providers='copilot'
+    {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      build = ":Copilot auth",
+      opts = {
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        filetypes = {
+          markdown = true,
+          help = true,
+        },
+      },
+    },
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
