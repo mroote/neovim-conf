@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   opts = {
-    provider = "copilot",
+    provider = "claude",
     copilot = {
       model = "claude-3.5-sonnet"
     },
@@ -38,6 +38,32 @@ return {
           require("avante.providers").openai.parse_response(data_stream, event_state, opts)
         end,
       },
+      ollama = {
+        ["local"] = true,
+        endpoint = "127.0.0.1:11434/v1",
+        model = "qwen2.5-coder",
+        parse_curl_args = function(opts, code_opts)
+            return {
+                url = opts.endpoint .. "/chat/completions",
+                headers = {
+                    ["Accept"] = "application/json",
+                    ["Content-Type"] = "application/json",
+                },
+                body = {
+                    model = opts.model,
+                    messages = { -- you can make your own message, but this is very advanced
+                      { role = "system", content = code_opts.system_prompt },
+                      { role = "user", content = require("avante.providers.openai").get_user_message(code_opts) },
+                    },
+                    max_tokens = 2048,
+                    stream = true,
+                },
+            }
+        end,
+        parse_response_data = function(data_stream, event_state, opts)
+            require("avante.providers").openai.parse_response(data_stream, event_state, opts)
+        end,
+      }
     }
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

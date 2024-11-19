@@ -56,6 +56,18 @@ M.themes = {
     url = 'rebelot/kanagawa.nvim',
     name = 'kanagawa',
   },
+  nord = {
+    url = 'shaunsingh/nord.nvim',
+    name = 'nord',
+  },
+  no_clown_fiesta = {
+    url = 'aktersnurra/no-clown-fiesta.nvim',
+    name = 'no-clown-fiesta',
+  },
+  vesper = {
+    url = 'datsfilipe/vesper.nvim',
+    name = 'vesper',
+  },
 }
 
 M.set_theme = function(theme_name)

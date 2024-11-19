@@ -16,6 +16,8 @@ local ts_configs = {
   'json',
   'html',
   'elixir',
+  'markdown',
+  'markdown_inline',
 }
 
 return {

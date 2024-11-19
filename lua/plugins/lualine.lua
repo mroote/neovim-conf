@@ -30,6 +30,7 @@ return {
         'neo-tree',
         'toggleterm',
         'winbar',
+        'Avante',
       },
     },
     sections = {

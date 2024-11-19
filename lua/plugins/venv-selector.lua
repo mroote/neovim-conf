@@ -5,6 +5,11 @@ return {
     -- Your options go here
     -- name = "venv",
     -- auto_refresh = false
+    search = {
+      upper_dir_env = {
+        command = "fdfind env$ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ':h'),
+      },
+    },
   },
   branch = 'regexp',
   event = 'VeryLazy', -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
