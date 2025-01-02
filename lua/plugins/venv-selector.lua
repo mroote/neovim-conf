@@ -7,7 +7,7 @@ return {
     -- auto_refresh = false
     search = {
       upper_dir_env = {
-        command = "fdfind env$ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ':h'),
+        command = "fdfind python$ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ':h'),
       },
     },
   },
