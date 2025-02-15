@@ -1,46 +1,39 @@
-local config = require("config.llm-config").get_config()
+local config = require("config.llm").get_config()
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
+  lazy = false,
   opts = {
     provider = config.provider,
     hints = { enabled = false },
     vendors = {
       ---@type AvanteProvider
       groq = {
+        __inherited_from = "openai",
         endpoint = "https://api.groq.com/openai/v1/chat/completions",
-        model = "llama-3.2-90b-text-preview",
+        model = config.model,
         api_key_name = "GROQ_API_KEY",
-        parse_curl_args = function(opts, code_opts)
-          return {
-            url = opts.endpoint,
-            headers = {
-              ["Accept"] = "application/json",
-              ["Content-Type"] = "application/json",
-              ["Authorization"] = "Bearer " .. os.getenv(opts.api_key_name),
-            },
-            body = {
-              model = opts.model,
-              messages = { -- you can make your own message, but this is very advanced
-                { role = "system", content = code_opts.system_prompt },
-                { role = "user", content = require("avante.providers.openai").get_user_message(code_opts) },
-              },
-              temperature = 0,
-              max_tokens = 4096,
-              stream = true, -- this will be set by default.
-            },
-          }
-        end,
-        parse_response_data = function(data_stream, event_state, opts)
-          require("avante.providers").openai.parse_response(data_stream, event_state, opts)
-        end,
+      },
+      ---@type AvanteProvider
+      deepinfra = {
+        __inherited_from = "openai",
+        endpoint = "https://api.deepinfra.com/v1/openai",
+        model = config.model,
+        api_key_name = "DEEPINFRA_API_KEY",
+      },
+      ---@type AvanteProvider
+      litellm = {
+        __inherited_from = "openai",
+        endpoint = "https://litellm.vpn.r00t.ca",
+        model = config.model,
+        api_key_name = "LITELLM_API_KEY",
       },
       ---@type AvanteProvider
       ollama = {
         __inherited_from = "openai",
         api_key_name = "",
         endpoint = "127.0.0.1:11434/v1",
-        model = "qwen2.5-coder",
+        model = config.model,
       },
     }
   },
