@@ -4,12 +4,10 @@
 r00t nvim
 --]]
 
-local themes = require('themes')
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.theme = themes.themes.gruvbox_material
+vim.g.theme = 'gruvbox-material'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -30,7 +28,6 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure plugins ]]
 require('lazy').setup {
   spec = {
-    unpack(themes.get_theme_specs()),
     -- Git related plugins
     {
       'tpope/vim-fugitive',
@@ -46,7 +43,7 @@ require('lazy').setup {
   },
   install = {
     missing = true,
-    colorscheme = { vim.g.theme.name, 'habamax' },
+    colorscheme = { vim.g.theme, 'habamax' },
   },
   performance = {
     rtp = {

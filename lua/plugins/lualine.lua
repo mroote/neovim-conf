@@ -21,7 +21,7 @@ return {
   opts = {
     options = {
       icons_enabled = true,
-      theme = vim.g.theme.name,
+      theme = vim.g.theme,
       globalstatus = false,
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = '' },
