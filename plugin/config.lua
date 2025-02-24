@@ -37,6 +37,9 @@ vim.o.showmatch = true
 
 vim.o.termguicolors = true
 
+-- Check for changes in file outside of vim
+vim.o.autoread = true
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
