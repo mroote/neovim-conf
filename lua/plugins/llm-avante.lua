@@ -1,11 +1,14 @@
 local config = require("config.llm").get_config()
+
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  lazy = false,
   opts = {
     provider = config.provider,
     hints = { enabled = false },
+    copilot = {
+      model = config.model,
+    },
     vendors = {
       ---@type AvanteProvider
       groq = {

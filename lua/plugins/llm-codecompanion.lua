@@ -1,3 +1,5 @@
+local config = require("config.llm").get_config()
+
 return {
   "olimorris/codecompanion.nvim",
   event = "VeryLazy",
@@ -15,6 +17,9 @@ return {
       }
     },
     adapters = {
+      opts = {
+        show_defaults = false,
+      },
       anthropic = function()
         return require("codecompanion.adapters").extend("anthropic", {
           env = {
@@ -22,13 +27,22 @@ return {
           },
         })
       end,
+      copilot = function()
+        return require("codecompanion.adapters").extend("copilot", {
+          schema = {
+            model = {
+              default = config.model,
+            }
+          },
+        })
+      end,
     },
     strategies = {
       chat = {
-        adapter = "anthropic",
+        adapter = config.provider,
       },
       inline = {
-        adapter = "ollama",
+        adapter = config.provider,
       },
     },
   }

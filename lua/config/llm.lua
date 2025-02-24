@@ -3,9 +3,7 @@ local M = {}
 M.configs = {
   work = {
     provider = "copilot",
-    copilot = {
-      model = "claude-3.5-sonnet"
-    },
+    model = "claude-3.5-sonnet"
   },
   personal = {
     provider = "litellm",
