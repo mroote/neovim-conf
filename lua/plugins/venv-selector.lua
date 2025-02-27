@@ -1,10 +1,11 @@
 return {
   'linux-cultist/venv-selector.nvim',
-  dependencies = { 'neovim/nvim-lspconfig', 'nvim-telescope/telescope.nvim', 'mfussenegger/nvim-dap-python' },
+  dependencies = { 
+    'neovim/nvim-lspconfig', 
+    'nvim-telescope/telescope.nvim', 
+    'mfussenegger/nvim-dap-python',
+  },
   opts = {
-    -- Your options go here
-    -- name = "venv",
-    -- auto_refresh = false
     search = {
       upper_dir_env = {
         command = "fdfind python$ " .. vim.fn.fnamemodify(vim.fn.getcwd(), ':h'),
