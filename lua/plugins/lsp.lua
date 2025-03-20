@@ -156,7 +156,10 @@ return {
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
 
-      vim.diagnostic.config { virtual_text = false }
+      vim.diagnostic.config {
+        virtual_text = false,
+        underline = false
+      }
     end
 
     -- mason-lspconfig requires that these setup functions are called in this order

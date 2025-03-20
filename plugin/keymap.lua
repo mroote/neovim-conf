@@ -19,3 +19,7 @@ vim.keymap.set("n", "<leader>gs", ":Neotree float git_status<cr>", { desc = 'Ope
 -- Open undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
+vim.keymap.set('n', '<leader>dt', function()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { silent = true, noremap = true, desc = 'Toggle LSP diagnostic'})
+
