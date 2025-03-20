@@ -3,7 +3,6 @@ local M = {}
 M.configs = {
   work = {
     provider = "copilot",
-    model = "claude-3.5-sonnet"
     model = "claude-3.7-sonnet"
   },
   personal = {
