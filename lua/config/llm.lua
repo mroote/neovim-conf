@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "DeepSeek-V3",
+    model = "deepseek-ai/DeepSeek-V3",
   }
 }
 

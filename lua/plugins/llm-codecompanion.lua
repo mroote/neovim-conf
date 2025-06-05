@@ -20,6 +20,21 @@ return {
       opts = {
         show_defaults = false,
       },
+      litellm = function()
+        return require("codecompanion.adapters").extend("openai_compatible", {
+          env = {
+            url = "https://litellm.vpn.r00t.ca",
+            api_key = "LITELLM_API_KEY",
+            chat_url = "/v1/chat/completions",
+            models_endpoint = "/v1/models",
+          },
+          schema = {
+            model = {
+              default = config.model,
+            },
+          }
+        })
+      end,
       anthropic = function()
         return require("codecompanion.adapters").extend("anthropic", {
           env = {
@@ -39,10 +54,16 @@ return {
     },
     strategies = {
       chat = {
-        adapter = config.provider,
+        adapter = {
+          name = config.provider,
+          model = config.model,
+        },
       },
       inline = {
-        adapter = config.provider,
+        adapter = {
+          name = config.provider,
+          model = config.model,
+        },
       },
     },
   }

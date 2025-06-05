@@ -3,27 +3,11 @@ local config = require("config.llm").get_config()
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
+  version = false, -- Never set this value to "*"! Never!
   opts = {
     provider = config.provider,
     hints = { enabled = false },
-    copilot = {
-      model = config.model,
-    },
-    vendors = {
-      ---@type AvanteProvider
-      groq = {
-        __inherited_from = "openai",
-        endpoint = "https://api.groq.com/openai/v1/chat/completions",
-        model = config.model,
-        api_key_name = "GROQ_API_KEY",
-      },
-      ---@type AvanteProvider
-      deepinfra = {
-        __inherited_from = "openai",
-        endpoint = "https://api.deepinfra.com/v1/openai",
-        model = config.model,
-        api_key_name = "DEEPINFRA_API_KEY",
-      },
+    providers = {
       ---@type AvanteProvider
       litellm = {
         __inherited_from = "openai",
@@ -38,7 +22,10 @@ return {
         endpoint = "127.0.0.1:11434/v1",
         model = config.model,
       },
-    }
+      copilot = {
+        model = config.model,
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
