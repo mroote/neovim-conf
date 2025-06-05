@@ -23,8 +23,10 @@ local servers = {
   basedpyright = {
     settings = {
       basedpyright = {
-        typeCheckingMode = 'off',
-      },
+        analysis = {
+          typeCheckingMode = "off",
+        },
+      }
     },
   },
   bashls = {},
@@ -77,18 +79,6 @@ return {
     {
       'williamboman/mason-lspconfig.nvim',
       event = 'VeryLazy',
-    },
-    {
-      'rshkarin/mason-nvim-lint',
-      event = 'VeryLazy',
-      dependencies = {
-        {
-          {
-            'mfussenegger/nvim-lint',
-            event = 'VeryLazy',
-          },
-        },
-      },
     },
     {
       'jay-babu/mason-nvim-dap.nvim',
@@ -167,12 +157,8 @@ return {
     require('mason').setup {
       log_level = vim.log.levels.DEBUG,
     }
-    require('mason-lspconfig').setup()
-
-    -- setup linting config
-    require('mason-nvim-lint').setup {
-      ensure_installed = vim.tbl_keys(linters),
-      automatic_installation = false,
+    local mason_lspconfig = require('mason-lspconfig').setup {
+      ensure_installed = vim.tbl_keys(servers)
     }
 
     -- setup debugging config
@@ -183,25 +169,16 @@ return {
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require 'mason-lspconfig'
-
-    mason_lspconfig.setup {
-      ensure_installed = vim.tbl_keys(servers),
-    }
-
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
+    
+    for server_name, config in pairs(servers) do
+      vim.lsp.config(server_name, {
           capabilities = capabilities,
           on_attach = on_attach,
-          cmd = (servers[server_name] or {}).cmd,
-          settings = (servers[server_name] or {}).settings,
-          filetypes = (servers[server_name] or {}).filetypes,
-          root_dir = (servers[server_name] or {}).root_dir,
-        }
-      end,
-    }
+          cmd = (config or {}).cmd,
+          settings = (config or {}).settings,
+          filetypes = (config or {}).filetypes,
+          root_dir = (config or {}).root_dir,
+        })
+    end
   end,
 }
