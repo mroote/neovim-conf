@@ -92,6 +92,12 @@ local themes = {
     lazy = true,
     config = function() vim.print("setup vesper") end,
   },
+  {
+    "yorumicolors/yorumi.nvim",
+    name = "yorumi",
+    lazy = true,
+    config = function() vim.print("setup yorumi") end,
+  },
 }
 
 vim.keymap.set("n", "<leader>uu", function()
