@@ -52,6 +52,7 @@ local servers = {
       diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  systemd_ls = {},
 }
 
 local linters = {
@@ -59,6 +60,7 @@ local linters = {
   gitleaks = {},
   gitlint = {},
   luacheck = {},
+  systemdlint = {},
 }
 
 local debuggers = {
