@@ -24,6 +24,7 @@ end
 
 function M.set_config_model(model)
   M.configs[M.active_config].model = model
+  require("codecompanion.adapters").set_model(model)
   M.set_avante_model(model)
 end
 

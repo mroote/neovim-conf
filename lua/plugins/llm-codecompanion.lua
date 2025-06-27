@@ -10,10 +10,14 @@ return {
     { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
   },
   config = true,
+  init = function()
+    require("plugins.codecompanion.fidget-spinner"):init()
+  end,
   opts = {
     display = {
       chat = {
-        render_headers = false,
+        render_headers = true,
+        show_settings = true,
       }
     },
     adapters = {
@@ -60,6 +64,12 @@ return {
         },
       },
       inline = {
+        adapter = {
+          name = config.provider,
+          model = config.model,
+        },
+      },
+      cmd = {
         adapter = {
           name = config.provider,
           model = config.model,
