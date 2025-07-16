@@ -147,19 +147,19 @@ return {
       vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
-
-      vim.diagnostic.config {
-        virtual_text = false,
-        underline = false
-      }
     end
+
+    vim.diagnostic.config {
+      virtual_text = false,
+      underline = false
+    }
 
     -- mason-lspconfig requires that these setup functions are called in this order
     -- before setting up the servers.
     require('mason').setup {
       log_level = vim.log.levels.DEBUG,
     }
-    local mason_lspconfig = require('mason-lspconfig').setup {
+    require('mason-lspconfig').setup {
       ensure_installed = vim.tbl_keys(servers)
     }
 
@@ -171,7 +171,7 @@ return {
     -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-    
+
     for server_name, config in pairs(servers) do
       vim.lsp.config(server_name, {
           capabilities = capabilities,

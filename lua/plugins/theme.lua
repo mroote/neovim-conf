@@ -98,6 +98,12 @@ local themes = {
     lazy = true,
     config = function() vim.print("setup yorumi") end,
   },
+  {
+    "neanias/everforest-nvim",
+    name = "everforest",
+    lazy = true,
+    config = function() vim.print("setup everforest") end,
+  },
 }
 
 vim.keymap.set("n", "<leader>uu", function()
