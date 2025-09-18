@@ -113,7 +113,7 @@ vim.keymap.set("n", "<leader>uu", function()
 
   vim.schedule(function() --> Needs to be scheduled:
     local completion = vim.fn.getcompletion
-    vim.cmd("Telescope colorscheme enable_preview=true ignore_builtins=true")
+    vim.cmd("FzfLua colorschemes")
     vim.fn.getcompletion = completion
   end)
 end, { desc = "Telescope custom colors", silent = true })
