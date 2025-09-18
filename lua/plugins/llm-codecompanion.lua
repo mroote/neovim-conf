@@ -21,40 +21,42 @@ return {
       }
     },
     adapters = {
-      opts = {
-        show_defaults = false,
-      },
-      litellm = function()
-        return require("codecompanion.adapters").extend("openai_compatible", {
-          env = {
-            url = "https://litellm.vpn.r00t.ca",
-            api_key = "LITELLM_API_KEY",
-            chat_url = "/v1/chat/completions",
-            models_endpoint = "/v1/models",
-          },
-          schema = {
-            model = {
-              default = config.model,
+      http = {
+        litellm = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = {
+              url = "https://litellm.vpn.r00t.ca",
+              api_key = "LITELLM_API_KEY",
+              chat_url = "/v1/chat/completions",
+              models_endpoint = "/v1/models",
             },
-          }
-        })
-      end,
-      anthropic = function()
-        return require("codecompanion.adapters").extend("anthropic", {
-          env = {
-            api_key = os.getenv("ANTHROPIC_API_KEY")
-          },
-        })
-      end,
-      copilot = function()
-        return require("codecompanion.adapters").extend("copilot", {
-          schema = {
-            model = {
-              default = config.model,
+            schema = {
+              model = {
+                default = config.model,
+              },
             }
-          },
-        })
-      end,
+          })
+        end,
+        anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            env = {
+              api_key = os.getenv("ANTHROPIC_API_KEY")
+            },
+          })
+        end,
+        copilot = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              model = {
+                default = config.model,
+              }
+            },
+          })
+        end,
+        opts = {
+          show_defaults = false,
+        },
+      },
     },
     strategies = {
       chat = {

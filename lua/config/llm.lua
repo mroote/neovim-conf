@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "deepinfra/qwen/qwen3-coder-480b-a35b-instruct",
+    model = "qwen3-coder",
   }
 }
 
