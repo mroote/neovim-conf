@@ -5,7 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
   },
   version = false, -- Never set this value to "*"! Never!
-  build = "yarn global add mcp-hub@latest",  -- Installs `mcp-hub` node binary globally
+  build = "yarn global add mcp-hub@4.2.1",  -- Installs `mcp-hub` node binary globally
   config = function()
     require("mcphub").setup()
   end

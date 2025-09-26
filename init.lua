@@ -28,11 +28,6 @@ vim.opt.rtp:prepend(lazypath)
 -- [[ Configure plugins ]]
 require('lazy').setup {
   spec = {
-    -- Git related plugins
-    {
-      'tpope/vim-fugitive',
-      event = 'VeryLazy',
-    },
     -- Detect tabstop and shiftwidth automatically
     {
       'tpope/vim-sleuth',
