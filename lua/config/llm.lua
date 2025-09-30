@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "qwen3-coder",
+    model = "qwen/qwen3-coder-480b-a35b-instruct",
   }
 }
 
@@ -25,7 +25,6 @@ end
 function M.set_config_model(model)
   M.configs[M.active_config].model = model
   require("codecompanion.adapters").set_model(model)
-  M.set_avante_model(model)
 end
 
 -- Switch between configurations
@@ -34,7 +33,6 @@ function M.switch_config(config_name)
     vim.notify("Configuration '" .. config_name .. "' not found", vim.log.levels.ERROR)
   end
   M.active_config = config_name
-  M.set_avante_provider(M.configs[config_name].provider)
   M.set_config_model(M.configs[config_name].model)
   vim.notify("Switched to configuration: " .. config_name, vim.log.levels.INFO)
 end
@@ -46,29 +44,6 @@ function M.list_configs()
     table.insert(configs, name)
   end
   return configs
-end
-
-function M.set_avante_provider(provider_name)
-  require("avante.api").switch_provider(provider_name)
-
-end
-
-function M.set_avante_model(model_name)
-  local Config = require("avante.config")
-  local Providers = require("avante.providers")
-  local provider = M.configs[M.active_config].provider
-
-  Config.override({
-    providers = {
-      [provider] = vim.tbl_deep_extend(
-        "force",
-        Config.get_provider_config(provider),
-        { model = model_name }
-      ),
-    },
-  })
-  local provider_cfg = Providers[provider]
-  if provider_cfg then provider_cfg.model = model_name end
 end
 
 function M.print_current_config()
