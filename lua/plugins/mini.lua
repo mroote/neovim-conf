@@ -64,6 +64,7 @@ return {
     require('mini.bufremove').setup {}
     require('mini.comment').setup {}
     require('mini.completion').setup {}
+    require('mini.notify').setup {}
 
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()
@@ -79,6 +80,16 @@ return {
 
         -- Highlight hex color strings (`#rrggbb`) using that color
         hex_color = hipatterns.gen_highlighter.hex_color(),
+        -- Highlight RGB color values (e.g., rgb(255, 0, 128) or rgba(100, 200, 50, 0.5))
+        rgb_color = {
+          pattern = 'rgb[a]?%(%s*%d+%s*,%s*%d+%s*,%s*%d+%s*(,%s*%.?%d*%.?%d+%s*)?%)',
+          group = 'MiniHipatternsHexColor',
+        },
+        -- Highlight HSL color values (e.g., hsl(120, 100%, 50%) or hsla(120, 100%, 50%, 0.8))
+        hsl_color = {
+          pattern = 'hsl[a]?%(%s*%d+%s*,%s*%d+%%%s*,%s*%d+%%%s*(,%s*%.?%d*%.?%d+%s*)?%)',
+          group = 'MiniHipatternsHexColor',
+        },
       },
     })
 
@@ -94,5 +105,54 @@ return {
       },
       symbol = '│',
     }
+
+    local miniclue = require('mini.clue')
+    miniclue.setup({
+      triggers = {
+        -- Leader triggers
+        { mode = 'n', keys = '<Leader>' },
+        { mode = 'x', keys = '<Leader>' },
+
+        -- Built-in completion
+        { mode = 'i', keys = '<C-x>' },
+
+        -- `g` key
+        { mode = 'n', keys = 'g' },
+        { mode = 'x', keys = 'g' },
+
+        -- Marks
+        { mode = 'n', keys = "'" },
+        { mode = 'n', keys = '`' },
+        { mode = 'x', keys = "'" },
+        { mode = 'x', keys = '`' },
+
+        -- Registers
+        { mode = 'n', keys = '"' },
+        { mode = 'x', keys = '"' },
+        { mode = 'i', keys = '<C-r>' },
+        { mode = 'c', keys = '<C-r>' },
+
+        -- Window commands
+        { mode = 'n', keys = '<C-w>' },
+
+        -- `z` key
+        { mode = 'n', keys = 'z' },
+        { mode = 'x', keys = 'z' },
+      },
+
+      clues = {
+        -- Enhance this by adding descriptions for <Leader> mapping groups
+        miniclue.gen_clues.builtin_completion(),
+        miniclue.gen_clues.g(),
+        miniclue.gen_clues.marks(),
+        miniclue.gen_clues.registers(),
+        miniclue.gen_clues.windows(),
+        miniclue.gen_clues.z(),
+      },
+
+      window = {
+        delay = 350,
+      }
+    })
   end,
 }

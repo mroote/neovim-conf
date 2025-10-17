@@ -1,11 +1,5 @@
 local themes = {
   {
-    "ellisonleao/gruvbox.nvim",
-    name = "gruvbox",
-    lazy = true,
-    config = function() vim.print("setup gruvbox") end,
-  },
-  {
     "sainnhe/gruvbox-material",
     name = "gruvbox-material",
     lazy = true,
