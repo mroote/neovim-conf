@@ -17,10 +17,21 @@ return {
     display = {
       chat = {
         render_headers = true,
-        show_settings = true,
+        window = {
+          position = "right"
+        },
       }
     },
     adapters = {
+      acp = {
+        claude_code = function()
+          return require("codecompanion.adapters").extend("claude_code", {
+            env = {
+              CLAUDE_CODE_OAUTH_TOKEN = "CC_OAUTH_TOKEN",
+            },
+          })
+        end,
+      },
       http = {
         litellm = function()
           return require("codecompanion.adapters").extend("openai_compatible", {
@@ -63,6 +74,25 @@ return {
         adapter = {
           name = config.provider,
           model = config.model,
+        },
+        tools = {
+          opts = {
+            auto_submit_errors = true, -- Send any errors to the LLM automatically?
+            auto_submit_success = true, -- Send any successful output to the LLM automatically?
+          },
+        },
+        keymaps = {
+          close = {
+            modes = {
+              n = "<C-c>",
+              i = "<C-c>",
+            },
+            index = 3,
+            callback = function()
+              require("codecompanion").toggle()
+            end,
+            description = "Toggle Chat",
+          },
         },
       },
       inline = {

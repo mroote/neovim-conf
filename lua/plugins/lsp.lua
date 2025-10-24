@@ -4,7 +4,7 @@ local servers = {
   clangd = {},
   gopls = {
     cmd = { 'gopls', 'serve' },
-    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl', '.yaml'},
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl', '.yaml' },
     settings = {
       gopls = {
         completeUnimported = true,
@@ -17,7 +17,7 @@ local servers = {
     root_dir = function(fname)
       -- see: https://github.com/neovim/nvim-lspconfig/issues/804
       local util = require 'lspconfig.util'
-      return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
+      return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
     end,
   },
   basedpyright = {
@@ -169,19 +169,15 @@ return {
       ensure_installed = vim.tbl_keys(debuggers),
     }
 
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
     for server_name, config in pairs(servers) do
       vim.lsp.config(server_name, {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          cmd = (config or {}).cmd,
-          settings = (config or {}).settings,
-          filetypes = (config or {}).filetypes,
-          root_dir = (config or {}).root_dir,
-        })
+        capabilities = (config or {}).capabilities,
+        on_attach = on_attach,
+        cmd = (config or {}).cmd,
+        settings = (config or {}).settings,
+        filetypes = (config or {}).filetypes,
+        root_dir = (config or {}).root_dir,
+      })
     end
   end,
 }

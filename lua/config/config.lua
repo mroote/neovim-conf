@@ -40,6 +40,9 @@ vim.o.termguicolors = true
 -- Check for changes in file outside of vim
 vim.o.autoread = true
 
+vim.o.cmdheight = 0
+vim.o.laststatus = 3
+
 -- [[ Autoread configuration ]]
 -- Trigger checktime when files change on disk
 local autoread_group = vim.api.nvim_create_augroup('AutoRead', { clear = true })
@@ -58,7 +61,7 @@ vim.api.nvim_create_autocmd('FileChangedShellPost', {
   group = autoread_group,
   pattern = '*',
   callback = function()
-    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.WARN)
+    vim.notify("File saved", vim.log.levels.INFO)
   end,
 })
 
@@ -87,6 +90,8 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- [[ Templating settings ]]
+-- Set highlighting for gotmpl files
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   group = vim.api.nvim_create_augroup('gotmpl_highlight', { clear = true }),
   pattern = '*.tmpl',
@@ -115,4 +120,24 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
       ]])
     end
   end,
+})
+
+-- Allow exiting insert mode in terminal by hitting <ESC>
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+-- Feed ESC in terminal mode using <C-\>
+vim.keymap.set("t", "<C-\\>", function()
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+        "n",
+        false
+    )
+end)
+
+vim.api.nvim_create_autocmd("TermLeave", {
+    desc = "Reload buffers when leaving terminal",
+    pattern = "*",
+    callback = function()
+        vim.cmd.checktime()
+    end,
 })

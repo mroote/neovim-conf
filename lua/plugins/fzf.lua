@@ -1,10 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
   event = 'VeryLazy',
-  -- optional for icon support
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  -- or if using mini.icons/mini.nvim
-  -- dependencies = { "echasnovski/mini.icons" },
   config = function()
     -- Function to find the git root directory based on the current buffer's path
     local function find_git_root()

@@ -110,7 +110,7 @@ vim.keymap.set("n", "<leader>uu", function()
     vim.cmd("FzfLua colorschemes")
     vim.fn.getcompletion = completion
   end)
-end, { desc = "Telescope custom colors", silent = true })
+end, { desc = "Colorscheme colors", silent = true })
 
 if vim.g.theme and vim.g.theme ~= '' then
   for _, theme in ipairs(themes) do
