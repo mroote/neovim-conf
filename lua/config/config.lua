@@ -2,6 +2,7 @@
 
 -- Set highlight on search
 vim.o.hlsearch = false
+
 vim.o.incsearch = true
 
 -- disable line wrapping
@@ -42,6 +43,8 @@ vim.o.autoread = true
 
 vim.o.cmdheight = 0
 vim.o.laststatus = 3
+
+vim.o.shortmess = "ao"
 
 -- [[ Autoread configuration ]]
 -- Trigger checktime when files change on disk
