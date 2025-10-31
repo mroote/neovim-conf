@@ -51,7 +51,7 @@ end
 return {
   -- Add mini nvim
   'nvim-mini/mini.nvim',
-  version = '*',
+  version = false,
   config = function()
     require('mini.surround').setup {}
     require('mini.snippets').setup {}

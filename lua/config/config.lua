@@ -46,28 +46,6 @@ vim.o.laststatus = 3
 
 vim.o.shortmess = "ao"
 
--- [[ Autoread configuration ]]
--- Trigger checktime when files change on disk
-local autoread_group = vim.api.nvim_create_augroup('AutoRead', { clear = true })
-vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
-  group = autoread_group,
-  pattern = '*',
-  callback = function()
-    if vim.fn.mode() ~= 'c' then
-      vim.cmd('checktime')
-    end
-  end,
-})
-
--- Notification after file change
-vim.api.nvim_create_autocmd('FileChangedShellPost', {
-  group = autoread_group,
-  pattern = '*',
-  callback = function()
-    vim.notify("File saved", vim.log.levels.INFO)
-  end,
-})
-
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
