@@ -3,7 +3,6 @@ return {
   'MeanderingProgrammer/render-markdown.nvim',
   event = "VeryLazy",
   opts = {
-    file_types = { "markdown", "Avante" },
+    file_types = { "markdown", "Avante", "codecompanion" },
   },
-  ft = { "markdown", "Avante" },
 }

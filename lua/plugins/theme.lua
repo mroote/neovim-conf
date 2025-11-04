@@ -108,7 +108,7 @@ local themes = {
 
 vim.keymap.set("n", "<leader>uu", function()
   for _, color in ipairs(themes) do
-    vim.cmd("Lazy load " .. color.name) --> vim colorschemes cannot be required...
+    vim.cmd("Lazy load " .. color.name)
   end
 
   vim.schedule(function() --> Needs to be scheduled:
