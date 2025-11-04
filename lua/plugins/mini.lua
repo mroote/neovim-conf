@@ -63,7 +63,7 @@ return {
     require('mini.cursorword').setup {}
     require('mini.bufremove').setup {}
     require('mini.comment').setup {}
-    require('mini.completion').setup {}
+    -- require('mini.completion').setup {}
 
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()

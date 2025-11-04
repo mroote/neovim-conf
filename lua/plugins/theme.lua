@@ -98,6 +98,12 @@ local themes = {
     lazy = true,
     config = function() vim.print("setup everforest") end,
   },
+  {
+    "savq/melange-nvim",
+    name = "melange",
+    lazy = true,
+    config = function() vim.print("setup melange") end,
+  }
 }
 
 vim.keymap.set("n", "<leader>uu", function()
