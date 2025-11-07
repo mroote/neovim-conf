@@ -53,6 +53,7 @@ local servers = {
     },
   },
   systemd_ls = {},
+  rust_analyzer = {},
 }
 
 local linters = {
