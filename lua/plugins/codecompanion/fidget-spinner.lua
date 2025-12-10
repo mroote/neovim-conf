@@ -40,8 +40,13 @@ function M:pop_progress_handle(id)
 end
 
 function M:create_progress_handle(request)
+  if request.data.strategy then
+    local title = " Requesting assistance (" .. request.data.strategy .. ")"
+  else
+    local title = ""
+  end
   return progress.handle.create({
-    title = " Requesting assistance (" .. request.data.strategy .. ")",
+    title = title,
     message = "In progress...",
     lsp_client = {
       name = M:llm_role_title(request.data.adapter),

@@ -64,6 +64,7 @@ return {
     require('mini.bufremove').setup {}
     require('mini.comment').setup {}
     -- require('mini.completion').setup {}
+    require('mini.cmdline').setup {}
 
     require('mini.icons').setup()
     MiniIcons.mock_nvim_web_devicons()
