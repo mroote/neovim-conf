@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "qwen/qwen3-coder-480b-a35b-instruct",
+    model = "minimaxai/minimax-m2",
   }
 }
 

@@ -23,3 +23,4 @@ vim.keymap.set('n', '<leader>dt', function()
   vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { silent = true, noremap = true, desc = 'Toggle LSP diagnostic'})
 
+vim.keymap.set('n', '<leader>dd', '<cmd>DiffviewOpen<cr>', { noremap = true, silent = true })

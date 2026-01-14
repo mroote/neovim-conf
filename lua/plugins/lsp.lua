@@ -52,7 +52,7 @@ local servers = {
       diagnostics = { disable = { 'missing-fields' } },
     },
   },
-  systemd_ls = {},
+  systemd_lsp = {},
   rust_analyzer = {},
 }
 
