@@ -15,95 +15,11 @@ local themes = {
     end,
   },
   {
-    "Shatur/neovim-ayu",
-    name = "ayu-dark",
-    lazy = true,
-    config = function() vim.print("setup ayu-dark") end,
-  },
-  {
-    "NTBBloodbath/doom-one.nvim",
-    name = "doom-one",
-    lazy = true,
-    config = function() vim.print("setup doom-one") end,
-  },
-  {
-    "AlessandroYorba/Despacio",
-    name = "despacio",
-    lazy = true,
-    config = function()
-      vim.print("setup despacio")
-      vim.g.espacio_Midnight = 1
-    end,
-  },
-  {
-    "fenetikm/falcon",
-    name = "falcon",
-    lazy = true,
-    config = function()
-      vim.print("setup falcon")
-      vim.g.falcon_background = 1
-      vim.g.falcon_inactive = 1
-    end,
-  },
-  {
-    "sainnhe/edge",
-    name = "edge",
-    lazy = true,
-    config = function()
-      vim.print("setup edge")
-      vim.g.edge_enable_italic = true
-      vim.g.edge_style = 'neon'
-      vim.g.edge_better_performance = 1
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = true,
-    config = function() vim.print("setup catppuccin") end,
-  },
-  {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
     lazy = true,
     config = function() vim.print("setup kanagawa") end,
   },
-  {
-    "shaunsingh/nord.nvim",
-    name = "nord",
-    lazy = true,
-    config = function() vim.print("setup nord") end,
-  },
-  {
-    "aktersnurra/no-clown-fiesta.nvim",
-    name = "no-clown-fiesta",
-    lazy = true,
-    config = function() vim.print("setup no-clown-fiesta") end,
-  },
-  {
-    "datsfilipe/vesper.nvim",
-    name = "vesper",
-    lazy = true,
-    config = function() vim.print("setup vesper") end,
-  },
-  {
-    "yorumicolors/yorumi.nvim",
-    name = "yorumi",
-    lazy = true,
-    config = function() vim.print("setup yorumi") end,
-  },
-  {
-    "neanias/everforest-nvim",
-    name = "everforest",
-    lazy = true,
-    config = function() vim.print("setup everforest") end,
-  },
-  {
-    "savq/melange-nvim",
-    name = "melange",
-    lazy = true,
-    config = function() vim.print("setup melange") end,
-  }
 }
 
 vim.keymap.set("n", "<leader>uu", function()
