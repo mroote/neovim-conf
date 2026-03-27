@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "minimaxai/minimax-m2",
+    model = "deepinfra/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
   }
 }
 
@@ -24,7 +24,11 @@ end
 
 function M.set_config_model(model)
   M.configs[M.active_config].model = model
-  require("codecompanion.adapters").set_model(model)
+  local ok, cc = pcall(require, "codecompanion")
+  if not ok then return end
+  for _, entry in ipairs(cc.buf_get_chat() or {}) do
+    entry.chat:change_model({ model = model })
+  end
 end
 
 -- Switch between configurations
