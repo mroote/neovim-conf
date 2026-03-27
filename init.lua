@@ -7,7 +7,7 @@ r00t nvim
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.theme = 'gruvbox-material'
+vim.g.theme = 'jellybeans'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim

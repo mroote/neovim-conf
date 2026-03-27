@@ -3,22 +3,27 @@ local themes = {
     "sainnhe/gruvbox-material",
     name = "gruvbox-material",
     lazy = true,
-    config = function() vim.print("setup gruvbox-material") end,
+    config = function() 
+      vim.g.gruvbox_material_foreground = 'mix'
+    end,
   },
   {
     "sainnhe/sonokai",
     name = "sonokai",
     lazy = true,
     config = function()
-      vim.print("setup sonokai")
-      vim.g.sonokai_style = 'atlantis'
+      vim.g.sonokai_style = 'espresso'
     end,
   },
   {
     "rebelot/kanagawa.nvim",
     name = "kanagawa",
     lazy = true,
-    config = function() vim.print("setup kanagawa") end,
+  },
+  {
+    "wtfox/jellybeans.nvim",
+    name = "jellybeans",
+    lazy = true,
   },
 }
 
@@ -39,7 +44,11 @@ if vim.g.theme and vim.g.theme ~= '' then
     if theme.name == vim.g.theme then
       theme.lazy = false
       theme.priority = 1000
+      local original_config = theme.config
       theme.config = function()
+        if original_config then
+          original_config()
+        end
         vim.cmd.colorscheme(vim.g.theme)
       end
     end
