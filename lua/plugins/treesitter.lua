@@ -26,7 +26,7 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
-  event = 'VeryLazy',
+  lazy = false,
   build = ':TSUpdate',
   config = function()
     -- [[ Configure Treesitter ]]
@@ -36,7 +36,7 @@ return {
         ensure_installed = ts_configs,
 
         -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-        auto_install = false,
+        auto_install = true,
         -- Install languages synchronously (only applied to `ensure_installed`)
         sync_install = false,
         -- List of parsers to ignore installing

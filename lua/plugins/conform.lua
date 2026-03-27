@@ -16,6 +16,7 @@ return {
       graphql = { 'prettier' },
       lua = { 'stylua' },
       python = { 'isort', 'black' },
+      terraform = { 'terraform fmt' },
     },
   },
   config = function()
