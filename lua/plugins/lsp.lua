@@ -83,15 +83,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       event = 'VeryLazy',
     },
-    {
-      'jay-babu/mason-nvim-dap.nvim',
-      event = 'VeryLazy',
-      dependencies = {
-        {
-          'mfussenegger/nvim-dap',
-        },
-      },
-    },
     -- Useful status updates for LSP
     {
       'j-hui/fidget.nvim',
@@ -131,6 +122,9 @@ return {
       nmap('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
       nmap('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
       nmap('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
+      nmap('<leader>di', function() 
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, '[d][i] Toggle inlay hints')
 
       -- See `:help K` for why this keymap
       nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -163,11 +157,6 @@ return {
 
     require('mason-lspconfig').setup {
       ensure_installed = vim.tbl_keys(servers)
-    }
-
-    -- setup debugging config
-    require('mason-nvim-dap').setup {
-      ensure_installed = vim.tbl_keys(debuggers),
     }
 
     for server_name, config in pairs(servers) do

@@ -24,9 +24,9 @@ return {
       acp = {
         claude_code = function()
           return require("codecompanion.adapters").extend("claude_code", {
-            env = {
-              CLAUDE_CODE_OAUTH_TOKEN = "CC_OAUTH_TOKEN",
-            },
+            defaults = {
+              mode = "plan"
+            }
           })
         end,
       },
@@ -106,15 +106,5 @@ return {
         },
       },
     },
-    extensions = {
-      mcphub = {
-        callback = "mcphub.extensions.codecompanion",
-        opts = {
-          make_vars = true,
-          make_slash_commands = true,
-          show_result_in_chat = true
-        }
-      }
-    }
   }
 }
