@@ -25,6 +25,11 @@ local themes = {
     name = "jellybeans",
     lazy = true,
   },
+  {
+    "zitrocode/carvion.nvim",
+    name = "carvion",
+    lazy = true,
+  },
 }
 
 vim.keymap.set("n", "<leader>uu", function()

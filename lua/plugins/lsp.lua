@@ -122,7 +122,7 @@ return {
       nmap('<leader>D', require('fzf-lua').lsp_typedefs, 'Type [D]efinition')
       nmap('<leader>ds', require('fzf-lua').lsp_document_symbols, '[D]ocument [S]ymbols')
       nmap('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, '[W]orkspace [S]ymbols')
-      nmap('<leader>di', function() 
+      nmap('<leader>di', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, '[d][i] Toggle inlay hints')
 
@@ -143,6 +143,8 @@ return {
         vim.lsp.buf.format()
       end, { desc = 'Format current buffer with LSP' })
     end
+
+    vim.lsp.inlay_hint.enable(false)
 
     vim.diagnostic.config {
       virtual_text = false,
