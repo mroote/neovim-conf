@@ -7,7 +7,7 @@ M.configs = {
   },
   personal = {
     provider = "litellm",
-    model = "deepinfra/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B",
+    model = "lm_studio/qwen/qwen3.6-35b-a3b",
   }
 }
 
