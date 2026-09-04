@@ -27,9 +27,6 @@ return {
       "document_symbols",
     },
     filesystem = {
-      follow_current_file = {
-        enabled = true
-      },
       use_libuv_file_watcher = true,
       filtered_items = {
         visible = true, -- when true, they will just be displayed differently than normal items
